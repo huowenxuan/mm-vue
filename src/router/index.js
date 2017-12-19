@@ -1,15 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Tabs from '@/components/Tabs'
+import Markdown from '@/components/Markdown'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
+    {path: '/', name: 'tabs', component: Tabs},
+    {path: '/markdown', name: 'markdown', component: Markdown}
   ]
 })
