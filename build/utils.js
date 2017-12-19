@@ -25,7 +25,13 @@ exports.cssLoaders = function (options) {
   const postcssLoader = {
     loader: 'postcss-loader',
     options: {
-      sourceMap: options.sourceMap
+      sourceMap: options.sourceMap,
+      // 加上才能使vuetify的css生效
+      plugins: (loader)=>[
+          require('autoprefixer')({
+              browsers:['last 5 versions']
+          })
+        ]
     }
   }
 

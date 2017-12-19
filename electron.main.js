@@ -46,7 +46,7 @@ function createMainWindow() {
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
-    icon: './res/favicon.ico'
+    icon: 'res/favicon.ico'
   });
 
   if (isDevelopment) {

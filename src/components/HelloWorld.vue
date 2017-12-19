@@ -1,23 +1,43 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
-  </div>
+  <v-layout row>
+    <v-flex xs12 sm6 offset-sm3>
+      <v-card>
+        <v-toolbar color="white" flat>
+          <v-btn icon light>
+            <v-icon color="grey darken-2">arrow_back</v-icon>
+          </v-btn>
+          <v-toolbar-title class="grey--text text--darken-4">Albums</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-btn icon light>
+            <v-icon color="grey darken-2">search</v-icon>
+          </v-btn>
+        </v-toolbar>
+        <v-subheader>May</v-subheader>
+        <v-container fluid grid-list-xs>
+          <v-layout row wrap>
+            <v-flex xs4 v-for="i in 6" :key="i">
+              <img
+                  class="image"
+                  v-bind:src="`https://randomuser.me/api/portraits/men/${i + 20}.jpg`"
+                  alt="lorem"
+                  width="100%"
+                  height="100%"
+              >
+            </v-flex>
+          </v-layout>
+        </v-container>
+        <v-subheader>June</v-subheader>
+        <v-container fluid grid-list-xs>
+          <v-layout row wrap>
+            <v-flex xs4 v-for="i in 6" :key="i">
+              <img class="image" v-bind:src="`https://randomuser.me/api/portraits/women/${i + 5}.jpg`" alt="lorem" width="100%" height="100%">
+            </v-flex>
+          </v-layout>
+        </v-container>
+        <v-footer class="mt-5"></v-footer>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -25,7 +45,12 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      text: 'center',
+      icon: 'justify',
+      toggle_none: null,
+      toggle_one: 0,
+      toggle_exclusive: 2,
+      toggle_multiple: [0, 1, 2]
     }
   }
 }
