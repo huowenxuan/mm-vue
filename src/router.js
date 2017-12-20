@@ -10,6 +10,6 @@ export default new Router({
   routes: [
     {path: '/', name: 'tabs', component: Tabs},
     {path: '/markdown', name: 'markdown', component: Markdown},
-    {path: '/tab-note', name: 'teb-note', component: TabNote}
+    {path: '/tab-note', name: 'tab-note', component: TabNote}
   ]
 })
