@@ -8,6 +8,7 @@
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "build": "node build/build.js",
+    "ios": "npm run build && cordova run ios",
     "ele": "electron-packager . 来杯小柠檬 --platform=mas --arch=x64 --ignore=node_modules --out /Users/huowenxuan/Desktop --version=1.0.0 --electronVersion=1.6.11 --icon=./res/electron.icns --overwrite",
     "ele-win": "electron-packager . 来杯小柠檬 --platform=win32 --arch=x64 --ignore=node_modules --out C:\\Users\\msi\\Desktop --version=1.0.0 --electronVersion=1.7.9 --overwrite"
   },
