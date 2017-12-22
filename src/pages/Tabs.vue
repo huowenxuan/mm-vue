@@ -1,7 +1,6 @@
-<template class="content">
-  <div class="content">
-    <div  class="bar bar-nav">
-    <v-toolbar dark color="primary">
+<template>
+  <div>
+    <v-toolbar class="nav-bar" absolute  dark color="primary">
       <v-toolbar-side-icon></v-toolbar-side-icon>
       <v-toolbar-title class="white--text">Title</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -11,71 +10,61 @@
       <v-btn icon><v-icon>refresh</v-icon></v-btn>
       <v-btn icon><v-icon>more_vert</v-icon></v-btn>
     </v-toolbar>
-    </div>
 
-    <h1>tabs</h1>
-    <a @click="toMarkdown()">走</a>
+    <!--<TabNote class="container-nav-tab" v-if=""/>-->
+    <!--<TabChat class="container-nav-tab"/>-->
+    <div class="headline text-xs-center pa-5">Active: {{ e1 }}</div>
 
-    <footer></footer>
-    <footer></footer>
-    <footer></footer>
-    <footer></footer>
-    <footer></footer>
-    <footer></footer>
-    <footer></footer>
-    <footer></footer>
-    <footer></footer>
-    <footer></footer>
-    <footer></footer>
-    <footer></footer>
-    <footer></footer>
+    <v-bottom-nav
+        shift
+        class="tab-bar"
+        absolute
+        :value="true" :active.sync="e1" color="transparent">
+      <v-btn flat color="teal" value="recent">
+        <span>Note</span>
+        <v-icon>note</v-icon>
+      </v-btn>
+      <v-btn flat color="teal" value="favorites">
+        <span>Chat</span>
+        <v-icon>chat</v-icon>
+      </v-btn>
+      <v-btn flat color="teal" value="nearby">
+        <span>Money</span>
+        <v-icon>money</v-icon>
+      </v-btn>
+    </v-bottom-nav>
   </div>
 </template>
 
 <script>
+  import TabNote from "./TabNote";
+  import TabChat from "./TabChat";
+
   export default {
+    components: {TabNote, TabChat},
     name: 'Tabs',
     data() {
-      return {}
+      return {
+        e1: 'recent',
+        value: true
+      }
     },
     methods: {
       toMarkdown() {
-        this.$router.push({name: 'tab-note'})
+        alert('s')
+        // this.$router.push({name: 'tab-note'})
       }
     }
   }
 </script>
 
 <style>
-  .content {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .bar {
-    position: absolute;
-    right: 0;
-    left: 0;
-    z-index: 10;
-    height: 2.2rem;
-    padding-right: 0.5rem;
-    padding-left: 0.5rem;
-    background-color: #f7f7f8;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;  }
-  .bar-nav {
-    top: 0;
-  }
-
-  footer {
+  .item {
     background-color: gray;
     height: 100px;
-    padding: 10px;
-    margin: 10px;
+    width: 100%;
+    padding: 10px 0px;
+    margin: 10px 0px;
   }
 </style>
 

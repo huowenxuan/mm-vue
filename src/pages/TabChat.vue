@@ -1,10 +1,10 @@
 <template>
-  <h1>TabNote</h1>
+  <h1>TabChat</h1>
 </template>
 
 <script>
   export default {
-    name: 'TabNote',
+    name: 'TabChat',
     data() {
       return {}
     },

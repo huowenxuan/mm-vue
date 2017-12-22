@@ -1,0 +1,27 @@
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.nav-bar {
+  height: 64px;
+  padding-top: 14px;
+}
+.container-nav-tab{
+  position: fixed;
+  top: 64px;
+  width: 100%;
+  bottom: 48px;
+  overflow-y: scroll; /* 可以滚动 */
+  -webkit-overflow-scrolling: touch; /* bounces */
+}
+.container-nav-tab{
+  position: fixed;
+  top: 64px;
+  width: 100%;
+  overflow-y: scroll; /* 可以滚动 */
+  -webkit-overflow-scrolling: touch; /* bounces */
+}
+.tab-bar {
+  height: 48px;
+}
