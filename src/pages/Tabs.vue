@@ -11,24 +11,26 @@
       <v-btn icon><v-icon>more_vert</v-icon></v-btn>
     </v-toolbar>
 
-    <!--<TabNote class="container-nav-tab" v-if=""/>-->
-    <!--<TabChat class="container-nav-tab"/>-->
-    <div class="headline text-xs-center pa-5">Active: {{ e1 }}</div>
+    <TabNote v-show="tab===0" class="container-nav-tab" v-if=""></TabNote>
+    <TabChat v-show="tab===1" class="container-nav-tab"></TabChat>
+    <TabMoney v-show="tab===2" class="container-nav-tab"></TabMoney>
 
     <v-bottom-nav
-        shift
         class="tab-bar"
         absolute
-        :value="true" :active.sync="e1" color="transparent">
-      <v-btn flat color="teal" value="recent">
+        :value="showTab"
+        :active.sync="tab"
+        color="primary"
+    >
+      <v-btn dark>
         <span>Note</span>
         <v-icon>note</v-icon>
       </v-btn>
-      <v-btn flat color="teal" value="favorites">
+      <v-btn dark>
         <span>Chat</span>
         <v-icon>chat</v-icon>
       </v-btn>
-      <v-btn flat color="teal" value="nearby">
+      <v-btn dark>
         <span>Money</span>
         <v-icon>money</v-icon>
       </v-btn>
@@ -39,14 +41,15 @@
 <script>
   import TabNote from "./TabNote";
   import TabChat from "./TabChat";
+  import TabMoney from "./TabMoney";
 
   export default {
-    components: {TabNote, TabChat},
+    components: {TabNote, TabChat, TabMoney},
     name: 'Tabs',
     data() {
       return {
-        e1: 'recent',
-        value: true
+        tab: 0,
+        showTab: true
       }
     },
     methods: {

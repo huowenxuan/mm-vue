@@ -5,8 +5,10 @@
   </v-app>
 </template>
 
-<script>
-  export default {
-    name: 'app'
-  }
+<script lang="ts">
+    import Vue, {ComponentOptions} from 'vue'
+
+    export default {
+        name: 'app'
+    } as ComponentOptions<Vue>
 </script>
