@@ -6,9 +6,9 @@
 </template>
 
 <script lang="ts">
-    import Vue, {ComponentOptions} from 'vue'
+  import Vue, {ComponentOptions} from 'vue'
 
-    export default {
-        name: 'app'
-    } as ComponentOptions<Vue>
+  export default {
+    name: 'app'
+  } as ComponentOptions<Vue>
 </script>

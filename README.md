@@ -1,3 +1,4 @@
 
 ## TODO
-测试electron打包windows
+note列表左右排版
+导入ts文件必须带后缀的bug
