@@ -62,12 +62,5 @@
 </script>
 
 <style>
-  .item {
-    background-color: gray;
-    height: 100px;
-    width: 100%;
-    padding: 10px 0px;
-    margin: 10px 0px;
-  }
 </style>
 

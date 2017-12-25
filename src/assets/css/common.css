@@ -19,7 +19,7 @@
   overflow-y: scroll; /* 可以滚动 */
   -webkit-overflow-scrolling: touch; /* bounces */
 }
-.container-nav-tab{
+.container-nav{
   position: fixed;
   top: 64px;
   width: 100%;
@@ -29,3 +29,33 @@
 .tab-bar {
   height: 48px;
 }
+
+/*!*模拟的标题,底部*!*/
+/*.header{*/
+  /*z-index: 9990;*/
+  /*position: fixed;*/
+  /*top: 0;*/
+  /*left: 0;*/
+  /*width: 100%;*/
+  /*height: 84px;*/
+  /*border-bottom: 1px solid #eee;*/
+  /*background-image: url(img/header.jpg);*/
+  /*background-size: contain;*/
+  /*background-position: center;*/
+  /*background-repeat: no-repeat;*/
+  /*background-color: white;*/
+/*}*/
+/*.footer{*/
+  /*z-index: 9990;*/
+  /*position: fixed;*/
+  /*bottom: 0;*/
+  /*left: 0;*/
+  /*width: 100%;*/
+  /*height: 50px;*/
+  /*border-top: 1px solid #eee;*/
+  /*background-image: url(img/footer.jpg);*/
+  /*background-size: contain;*/
+  /*background-position: center;*/
+  /*background-repeat: no-repeat;*/
+  /*background-color: white;*/
+/*}*/
