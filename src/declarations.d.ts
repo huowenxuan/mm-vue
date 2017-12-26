@@ -3,6 +3,7 @@ declare module 'leancloud-realtime-plugin-typed-messages'
 declare module 'leancloud-storage'
 declare module 'showdown'
 declare module 'vuetify'
+declare module 'mescroll.js'
 declare module 'monent'
 declare module "*.vue" {
   import Vue from "vue";

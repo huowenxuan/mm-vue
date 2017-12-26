@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-scroll="loadMore">
     <div v-for="note in notes">
       <div class="time-box">
         <h3>{{showDate(note)}}</h3>
@@ -19,13 +19,38 @@
   import Component from 'vue-class-component'
   import * as moment from 'moment';
 
-  @Component
+  @Component({
+    directives: {
+      scroll: {
+        componentUpdated: (el, binding) => {
+          let top = document.body.scrollTop
+          let windowHeight = window.innerHeight
+          let clientHeight = el.clientHeight
+          let fn = binding.value;
+          if (clientHeight < window.innerHeight) {
+            fn()
+          }
+        },
+        bind: (el, binding) => {
+          let top = document.body.scrollTop
+          let windowHeight = window.innerHeight
+          let clientHeight = el.clientHeight
+          let fn = binding.value;
+          window.addEventListener('scroll', () => {
+            if (top + windowHeight >= clientHeight) {
+              fn();
+            }
+          })
+        }
+      }
+    }
+  })
   export default class TabNote extends Vue {
     notes = []
 
     async beforeMount() {
       let lc = new LCStorage()
-      this.notes = await lc.getNotes('1', 0, 20)
+      this.notes = await lc.getNotes('1', 0, 1)
     }
 
     mounted() {
@@ -33,6 +58,10 @@
 
     toMarkdown() {
       this.$router.push({name: 'markdown'})
+    }
+
+    loadMore() {
+      console.log('s')
     }
 
     refresh() {

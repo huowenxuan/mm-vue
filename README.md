@@ -1,4 +1,4 @@
 
 ## TODO
-note列表左右排版
 导入ts文件必须带后缀的bug
+iOS上滚动条盖在nav和tab上，浏览器不显示滚动条

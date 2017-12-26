@@ -8,6 +8,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 .nav-bar {
+  height: 64px;
+  padding-top: 14px;
   position: fixed;
   right: 0;
   left: 0;
@@ -20,8 +22,8 @@
   height: 48px;
 }
 .container-nav-tab{
-  margin-top: 64px;
-  margin-bottom: 48px;
+  padding-top: 64px;
+  padding-bottom: 48px;
   width: 100%;
   scrollbar-arrow-color: red;
   overflow-y: scroll; /* 可以滚动 */
