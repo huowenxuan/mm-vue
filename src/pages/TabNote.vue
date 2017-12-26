@@ -1,15 +1,13 @@
 <template>
   <div>
-    <div>
-      <div v-for="note in notes">
-        <div class="time-box">
-          <h3>{{showDate(note)}}</h3>
-          <h4>{{showTime(note)}}</h4>
-        </div>
+    <div v-for="note in notes">
+      <div class="time-box">
+        <h3>{{showDate(note)}}</h3>
+        <h4>{{showTime(note)}}</h4>
+      </div>
 
-        <div class="content-box">
-          <p class="pp">{{ note.attributes.text }}</p>
-        </div>
+      <div class="content-box">
+        <p class="pp">{{ note.attributes.text }}</p>
       </div>
     </div>
   </div>
@@ -27,7 +25,7 @@
 
     async beforeMount() {
       let lc = new LCStorage()
-      this.notes = await lc.getNotes('1', 0, 10)
+      this.notes = await lc.getNotes('1', 0, 20)
     }
 
     mounted() {

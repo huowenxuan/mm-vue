@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar class="nav-bar" absolute  dark color="primary">
+    <v-toolbar class="nav-bar" dark color="primary">
       <v-toolbar-side-icon></v-toolbar-side-icon>
       <v-toolbar-title class="white--text">Title</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -17,7 +17,6 @@
 
     <v-bottom-nav
         class="tab-bar"
-        absolute
         :value="showTab"
         :active.sync="tab"
         color="primary"

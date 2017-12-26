@@ -4,8 +4,7 @@ declare module 'leancloud-storage'
 declare module 'showdown'
 declare module 'vuetify'
 declare module 'monent'
-declare module 'vue-router'
 declare module "*.vue" {
-    import Vue from "vue";
-    export default Vue;
+  import Vue from "vue";
+  export default Vue;
 }

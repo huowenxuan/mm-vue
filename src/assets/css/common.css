@@ -8,26 +8,30 @@
   -moz-osx-font-smoothing: grayscale;
 }
 .nav-bar {
-  height: 64px;
-  padding-top: 14px;
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 9999;
+}
+.tab-bar {
+  position: fixed;
+  z-index: 9999;
+  bottom: 0;
+  height: 48px;
 }
 .container-nav-tab{
-  position: fixed;
-  top: 64px;
+  margin-top: 64px;
+  margin-bottom: 48px;
   width: 100%;
-  bottom: 48px;
+  scrollbar-arrow-color: red;
   overflow-y: scroll; /* 可以滚动 */
   -webkit-overflow-scrolling: touch; /* bounces */
 }
 .container-nav{
-  position: fixed;
   top: 64px;
   width: 100%;
   overflow-y: scroll; /* 可以滚动 */
   -webkit-overflow-scrolling: touch; /* bounces */
-}
-.tab-bar {
-  height: 48px;
 }
 
 /*!*模拟的标题,底部*!*/
