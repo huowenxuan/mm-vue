@@ -61,7 +61,7 @@
     }
 
     loadMore() {
-      console.log('s')
+      console.log('load more')
     }
 
     refresh() {
