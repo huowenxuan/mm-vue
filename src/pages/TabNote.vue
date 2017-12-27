@@ -10,6 +10,7 @@
         <p class="pp">{{ note.attributes.text }}</p>
       </div>
     </div>
+    <h2 class="load-more">{{loadMoreText}}</h2>
   </div>
 </template>
 
@@ -32,12 +33,12 @@
           }
         },
         bind: (el, binding) => {
-          let top = document.body.scrollTop
-          let windowHeight = window.innerHeight
-          let clientHeight = el.clientHeight
-          let fn = binding.value;
           window.addEventListener('scroll', () => {
-            if (top + windowHeight >= clientHeight) {
+            let top = document.body.scrollTop
+            let windowHeight = window.innerHeight
+            let clientHeight = el.clientHeight
+            let fn = binding.value;
+            if ((top + windowHeight) >= clientHeight) {
               fn();
             }
           })
@@ -47,10 +48,14 @@
   })
   export default class TabNote extends Vue {
     notes = []
+    loading = false
+    skip = 0
+    limit = 10
+    lc = new LCStorage()
+    loadMoreText = 'load more'
 
     async beforeMount() {
-      let lc = new LCStorage()
-      this.notes = await lc.getNotes('1', 0, 1)
+      this.notes = await this.lc.getNotes('1', this.skip, this.limit)
     }
 
     mounted() {
@@ -60,8 +65,18 @@
       this.$router.push({name: 'markdown'})
     }
 
-    loadMore() {
-      console.log('load more')
+    async loadMore() {
+      this.skip += this.limit
+      if (!this.loading) {
+        this.loading = true
+        let notes = await this.lc.getNotes('1', this.skip, this.limit)
+        if (notes && notes.length > 0) {
+          this.notes.push(...notes)
+        } else {
+          this.loadMoreText = 'no more'
+        }
+        this.loading = false
+      }
     }
 
     refresh() {
@@ -162,4 +177,7 @@
     display: -webkit-box;
   }
 
+  .load-more {
+    text-align: center;
+  }
 </style>

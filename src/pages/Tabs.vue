@@ -11,7 +11,7 @@
       <v-btn icon><v-icon>more_vert</v-icon></v-btn>
     </v-toolbar>
 
-    <TabNote v-show="tab===0" class="container-nav-tab" v-if=""></TabNote>
+    <TabNote v-show="tab===0" class="container-nav-tab"></TabNote>
     <TabChat v-show="tab===1" class="container-nav-tab"></TabChat>
     <TabMoney v-show="tab===2" class="container-nav-tab"></TabMoney>
 
