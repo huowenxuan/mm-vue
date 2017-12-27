@@ -11,25 +11,26 @@
       <v-btn icon><v-icon>more_vert</v-icon></v-btn>
     </v-toolbar>
 
-    <TabNote v-show="tab===0" class="container-nav-tab"></TabNote>
-    <TabChat v-show="tab===1" class="container-nav-tab"></TabChat>
-    <TabMoney v-show="tab===2" class="container-nav-tab"></TabMoney>
+    <TabNote v-show="tab==='e1'" class="container-nav-tab"></TabNote>
+    <TabChat v-show="tab==='e2'" class="container-nav-tab"></TabChat>
+    <TabMoney v-show="tab==='e3'" class="container-nav-tab"></TabMoney>
 
     <v-bottom-nav
+        absolute
         class="tab-bar"
         :value="showTab"
-        :active.sync="tab"
+        :active="tab"
         color="primary"
     >
-      <v-btn dark>
+      <v-btn color="white" dark value="e1" @click="changeTab('e1')">
         <span>Note</span>
         <v-icon>note</v-icon>
       </v-btn>
-      <v-btn dark>
+      <v-btn color="white" dark value="e2" @click="changeTab('e2')">
         <span>Chat</span>
         <v-icon>chat</v-icon>
       </v-btn>
-      <v-btn dark>
+      <v-btn color="white" dark value="e3" @click="changeTab('e3')">
         <span>Money</span>
         <v-icon>money</v-icon>
       </v-btn>
@@ -37,25 +38,22 @@
   </div>
 </template>
 
-<script>
-  import TabNote from "./TabNote";
-  import TabChat from "./TabChat";
-  import TabMoney from "./TabMoney";
+<script lang="ts">
+  import Vue from 'vue'
+  import TabNote from "./TabNote.vue";
+  import TabChat from "./TabChat.vue";
+  import TabMoney from "./TabMoney.vue";
+  import Component from 'vue-class-component'
 
-  export default {
-    components: {TabNote, TabChat, TabMoney},
-    name: 'Tabs',
-    data() {
-      return {
-        tab: 0,
-        showTab: true
-      }
-    },
-    methods: {
-      toMarkdown() {
-        alert('s')
-        // this.$router.push({name: 'tab-note'})
-      }
+  @Component({
+    components: {TabNote, TabChat, TabMoney}
+  })
+  export default class Tabs extends Vue {
+    tab = 'e1'
+    showTab = true
+
+    changeTab(e) {
+      this.tab = e
     }
   }
 </script>

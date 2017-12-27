@@ -1,5 +1,12 @@
 <template>
   <div v-scroll="loadMore">
+    <!--locale="zh-cn"-->
+    <v-date-picker
+        color="red"
+        id="date-picker"
+        v-model="picker"
+        no-title
+    ></v-date-picker>
     <div v-for="note in notes">
       <div class="time-box">
         <h3>{{showDate(note)}}</h3>
@@ -29,7 +36,7 @@
           let clientHeight = el.clientHeight
           let fn = binding.value;
           if (clientHeight < window.innerHeight) {
-            fn()
+            // fn()
           }
         },
         bind: (el, binding) => {
@@ -53,6 +60,8 @@
     limit = 10
     lc = new LCStorage()
     loadMoreText = 'load more'
+
+    picker: null
 
     async beforeMount() {
       this.notes = await this.lc.getNotes('1', this.skip, this.limit)
@@ -180,4 +189,10 @@
   .load-more {
     text-align: center;
   }
+
+  #date-picker {
+    width: 100%;
+    align-items: center;
+  }
+
 </style>

@@ -25,10 +25,11 @@
     "leancloud-realtime-plugin-typed-messages": "^3.0.0",
     "leancloud-storage": "^3.4.2",
     "moment": "^2.20.1",
+    "muse-ui": "^2.1.0",
     "vue": "^2.5.2",
     "vue-class-component": "^6.1.2",
     "vue-router": "^3.0.1",
-    "vuetify": "^1.0.0-alpha.3"
+    "vuetify": "^v1.0.0-alpha.3"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
