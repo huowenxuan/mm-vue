@@ -1,23 +1,30 @@
 <template>
-  <div v-scroll="loadMore">
-    <!--locale="zh-cn"-->
-    <v-date-picker
-        color="red"
-        id="date-picker"
-        v-model="picker"
-        no-title
-    ></v-date-picker>
-    <div v-for="note in notes">
-      <div class="time-box">
-        <h3>{{showDate(note)}}</h3>
-        <h4>{{showTime(note)}}</h4>
+  <div>
+    <mu-appbar title="Note" class="nav-bar">
+      <mu-icon-button icon="menu" slot="left"/>
+      <mu-flat-button label="expand_more" slot="right"/>
+      <mu-icon-button icon="expand_more" slot="right"/>
+    </mu-appbar>
+
+    <!--v-scroll="loadMore"-->
+    <mu-list class="container-nav-tab">
+      <div v-for="note in notes" :key="note.id">
+        <mu-sub-header v-if="showDate(note)" style="color: black; font-size: 18px; margin-top: 10px">{{showDate(note)}}</mu-sub-header>
+        <mu-list-item :title="showTime(note)">
+          <!--<span style="font-size: 30px; color: black; flex: 1; text-align: center" slot="leftAvatar">{{ note.attributes.text[0] }}</span>-->
+          <span slot="describe">{{ note.attributes.text }}</span>
+          <mu-icon-menu slot="right" icon="more_vert" tooltip="操作">
+            <mu-menu-item title="编辑"/>
+            <mu-menu-item title="删除"/>
+          </mu-icon-menu>
+
+        </mu-list-item>
+        <!--<mu-divider inset/>-->
+        <mu-divider />
       </div>
 
-      <div class="content-box">
-        <p class="pp">{{ note.attributes.text }}</p>
-      </div>
-    </div>
-    <h2 class="load-more">{{loadMoreText}}</h2>
+      <h2 class="load-more">{{loadMoreText}}</h2>
+    </mu-list>
   </div>
 </template>
 
@@ -59,7 +66,7 @@
     skip = 0
     limit = 10
     lc = new LCStorage()
-    loadMoreText = 'load more'
+    loadMoreText = 'load more...'
 
     picker: null
 
@@ -122,10 +129,9 @@
       let day = m.date()
       let weekday = m.weekday()
 
-      let end = `${month}/${day} ${weekCns[weekday].replace('周', '')}`
-      if (!this.isThisYear(date)) {
-        end = `${year}/${end}`
-      }
+      let end = `${month}/${day} ${weekCns[weekday]}`
+      if (!this.isThisYear(date))
+        end = `${end} ${year}`
       return end
     }
 
@@ -165,34 +171,9 @@
 </script>
 
 <style>
-  .time-box {
-    float: left;
-    width: 110px;
-  }
-
-  .content-box {
-    min-height: 60px;
-    width: 100%;
-  }
-
-  .pp {
-    margin: 0;
-    font-size: small;
-    /*white-space: pre; !* 多行*!*/
-    text-overflow: ellipsis; /*超出的宽度显示省略号*/
-    overflow: hidden; /*不超出父元素*/
-    -webkit-line-clamp: 5; /*限制最大行数*/
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-  }
-
   .load-more {
     text-align: center;
-  }
-
-  #date-picker {
-    width: 100%;
-    align-items: center;
+    margin: 20px auto;
   }
 
 </style>

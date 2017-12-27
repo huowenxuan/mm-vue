@@ -1,14 +1,14 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import Vuetify from 'vuetify'
 import App from './App.vue'
+import MuseUI from 'muse-ui'
 import router from './router.ts'
-import 'vuetify/dist/vuetify.min.css';
-// import 'vuetify/es5/util/colors'
 import './assets/css/common.css'
+import 'muse-ui/dist/muse-ui.css'
+import 'muse-ui/dist/theme-carbon.css' // 使用 carbon 主题
 
-Vue.use(Vuetify)
+Vue.use(MuseUI)
 
 Vue.config.productionTip = true
 new Vue({

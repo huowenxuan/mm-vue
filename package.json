@@ -28,8 +28,7 @@
     "muse-ui": "^2.1.0",
     "vue": "^2.5.2",
     "vue-class-component": "^6.1.2",
-    "vue-router": "^3.0.1",
-    "vuetify": "^v1.0.0-alpha.3"
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

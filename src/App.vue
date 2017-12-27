@@ -1,8 +1,8 @@
 <template>
   <!-- v-app能使color='primary'生效，并且支持自定义主题 -->
-  <v-app id="app">
+  <div>
     <router-view></router-view>
-  </v-app>
+  </div>
 </template>
 
 <script lang="ts">
