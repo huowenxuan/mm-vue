@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-scroll="loadMore">
     <mu-appbar :zDepth="2" title="Note" class="nav-bar">
       <mu-icon-button icon="menu" slot="left"/>
       <mu-flat-button label="expand_more" slot="right"/>
@@ -9,7 +9,7 @@
     <mu-list  class="container-nav-tab">
       <mu-refresh-control :refreshing="refreshing" :trigger="scroll" @refresh="refresh"/>
       <div v-for="note in notes" :key="note.id">
-        <mu-list-item :title="showTime(note)" @click="toMarkdown(note)">
+        <mu-list-item :title="showTime(note)" :disableRipple="true" @click="toMarkdown(note)">
           <div v-if="!showDate(note)" style="border-left:1px dashed black; left:35px; top:0; width: 1px; bottom: 2px; position: absolute"></div>
 
           <span style="color: black;" slot="leftAvatar">{{ showDate(note) }}</span>
@@ -22,7 +22,8 @@
         </mu-list-item>
         <mu-divider inset/>
       </div>
-      <mu-infinite-scroll :scroller="scroll" :loading="loading" @load="loadMore" loadingText="load more..."/>
+
+      <h2 class="load-more">{{loadMoreText}}</h2>
     </mu-list>
   </div>
 </template>
@@ -33,7 +34,32 @@
   import Component from 'vue-class-component'
   import * as moment from 'moment';
 
-  @Component
+  @Component({
+    directives: {
+      scroll: {
+        componentUpdated: (el, binding) => {
+          let top = document.body.scrollTop
+          let windowHeight = window.innerHeight
+          let clientHeight = el.clientHeight
+          let fn = binding.value;
+          if (clientHeight < window.innerHeight) {
+            // fn()
+          }
+        },
+        bind: (el, binding) => {
+          window.addEventListener('scroll', () => {
+            let top = document.body.scrollTop
+            let windowHeight = window.innerHeight
+            let clientHeight = el.clientHeight
+            let fn = binding.value;
+            if ((top + windowHeight) >= clientHeight) {
+              fn();
+            }
+          })
+        }
+      }
+    }
+  })
   export default class TabNote extends Vue {
     notes = []
     loading = false
@@ -42,6 +68,7 @@
     lc = new LCStorage()
     scroll = null
     refreshing = false
+    loadMoreText = 'load more...'
 
     picker: null
 
@@ -64,6 +91,8 @@
         let notes = await this.lc.getNotes('1', this.skip, this.limit)
         if (notes && notes.length > 0) {
           this.notes.push(...notes)
+        } else {
+          this.loadMoreText = 'no more'
         }
         this.loading = false
       }
