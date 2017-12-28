@@ -1,5 +1,4 @@
 <template>
-  <!-- v-app能使color='primary'生效，并且支持自定义主题 -->
   <div>
     <router-view></router-view>
   </div>

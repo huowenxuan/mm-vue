@@ -6,7 +6,11 @@ import MuseUI from 'muse-ui'
 import router from './router.ts'
 import './assets/css/common.css'
 import 'muse-ui/dist/muse-ui.css'
-import 'muse-ui/dist/theme-carbon.css' // 使用 carbon 主题
+// import 'muse-ui/dist/theme-carbon.css'
+// import 'muse-ui/dist/theme-dark.css'
+// import 'muse-ui/dist/theme-light.css'
+// import 'muse-ui/dist/theme-default.css'
+import 'muse-ui/dist/theme-teal.css'
 
 Vue.use(MuseUI)
 

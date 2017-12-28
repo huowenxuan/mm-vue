@@ -11,7 +11,7 @@
 
 .nav-bar {
     height: 64px !important;
-    padding: 14px 0 0 0 !important;
+    padding: 25px 0 5px 5px !important;
     position: fixed;
     right: 0;
     left: 0;
@@ -36,7 +36,7 @@
 }
 
 .container-nav {
-    top: 64px;
+    padding-top: 64px !important;
     width: 100%;
     overflow-y: scroll; /* 可以滚动 */
     -webkit-overflow-scrolling: touch; /* bounces */

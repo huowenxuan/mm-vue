@@ -1,29 +1,28 @@
 <template>
   <div>
-    <mu-appbar title="Note" class="nav-bar">
+    <mu-appbar :zDepth="2" title="Note" class="nav-bar">
       <mu-icon-button icon="menu" slot="left"/>
       <mu-flat-button label="expand_more" slot="right"/>
       <mu-icon-button icon="expand_more" slot="right"/>
     </mu-appbar>
 
-    <!--v-scroll="loadMore"-->
-    <mu-list class="container-nav-tab">
+    <mu-list  class="container-nav-tab">
+      <mu-refresh-control :refreshing="refreshing" :trigger="scroll" @refresh="refresh"/>
       <div v-for="note in notes" :key="note.id">
-        <mu-sub-header v-if="showDate(note)" style="color: black; font-size: 18px; margin-top: 10px">{{showDate(note)}}</mu-sub-header>
-        <mu-list-item :title="showTime(note)">
-          <!--<span style="font-size: 30px; color: black; flex: 1; text-align: center" slot="leftAvatar">{{ note.attributes.text[0] }}</span>-->
+        <mu-list-item :title="showTime(note)" @click="toMarkdown(note)">
+          <div v-if="!showDate(note)" style="border-left:1px dashed black; left:35px; top:0; width: 1px; bottom: 2px; position: absolute"></div>
+
+          <span style="color: black;" slot="leftAvatar">{{ showDate(note) }}</span>
+
           <span slot="describe">{{ note.attributes.text }}</span>
           <mu-icon-menu slot="right" icon="more_vert" tooltip="操作">
             <mu-menu-item title="编辑"/>
             <mu-menu-item title="删除"/>
           </mu-icon-menu>
-
         </mu-list-item>
-        <!--<mu-divider inset/>-->
-        <mu-divider />
+        <mu-divider inset/>
       </div>
-
-      <h2 class="load-more">{{loadMoreText}}</h2>
+      <mu-infinite-scroll :scroller="scroll" :loading="loading" @load="loadMore" loadingText="load more..."/>
     </mu-list>
   </div>
 </template>
@@ -34,51 +33,28 @@
   import Component from 'vue-class-component'
   import * as moment from 'moment';
 
-  @Component({
-    directives: {
-      scroll: {
-        componentUpdated: (el, binding) => {
-          let top = document.body.scrollTop
-          let windowHeight = window.innerHeight
-          let clientHeight = el.clientHeight
-          let fn = binding.value;
-          if (clientHeight < window.innerHeight) {
-            // fn()
-          }
-        },
-        bind: (el, binding) => {
-          window.addEventListener('scroll', () => {
-            let top = document.body.scrollTop
-            let windowHeight = window.innerHeight
-            let clientHeight = el.clientHeight
-            let fn = binding.value;
-            if ((top + windowHeight) >= clientHeight) {
-              fn();
-            }
-          })
-        }
-      }
-    }
-  })
+  @Component
   export default class TabNote extends Vue {
     notes = []
     loading = false
     skip = 0
     limit = 10
     lc = new LCStorage()
-    loadMoreText = 'load more...'
+    scroll = null
+    refreshing = false
 
     picker: null
 
     async beforeMount() {
-      this.notes = await this.lc.getNotes('1', this.skip, this.limit)
     }
 
     mounted() {
+      this.scroll = this.$el
+      this.refresh()
     }
 
-    toMarkdown() {
-      this.$router.push({name: 'markdown'})
+    toMarkdown(note) {
+      this.$router.push({name: 'markdown', params: {markdown: note.attributes.text}})
     }
 
     async loadMore() {
@@ -88,15 +64,16 @@
         let notes = await this.lc.getNotes('1', this.skip, this.limit)
         if (notes && notes.length > 0) {
           this.notes.push(...notes)
-        } else {
-          this.loadMoreText = 'no more'
         }
         this.loading = false
       }
     }
 
-    refresh() {
-
+    async refresh() {
+      this.refreshing = true
+      this.skip = 0
+      this.notes = await this.lc.getNotes('1', this.skip, this.limit)
+      this.refreshing = false
     }
 
     isThisYear(date) {
@@ -129,7 +106,7 @@
       let day = m.date()
       let weekday = m.weekday()
 
-      let end = `${month}/${day} ${weekCns[weekday]}`
+      let end = `${month}/${day}\n${weekCns[weekday]}`
       if (!this.isThisYear(date))
         end = `${end} ${year}`
       return end
@@ -174,6 +151,12 @@
   .load-more {
     text-align: center;
     margin: 20px auto;
+  }
+
+  .mu-item-left {
+    max-height: 100px !important;
+    /*align-items: flex-start !important;*/
+    /*top: 13px !important;*/
   }
 
 </style>
